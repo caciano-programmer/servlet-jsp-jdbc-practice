@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.*, jdbc.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
 <html>
 <head>
@@ -23,12 +22,18 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Action</th>
                 </tr>
                 <core:forEach var="temp" items="${STUDENT_LIST}">
+                    <core:url var="tempLink" value="students">
+                        <core:param name="command" value="LOAD"/>
+                        <core:param name="studentId" value="${temp.id}"/>
+                    </core:url>
                     <tr>
                         <td>${temp.firstName}</td>
                         <td>${temp.lastName}</td>
                         <td>${temp.email}</td>
+                        <td><a href="${tempLink}"/>Update</td>
                     </tr>
                 </core:forEach>
             </table>
