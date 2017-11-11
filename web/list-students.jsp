@@ -29,11 +29,17 @@
                         <core:param name="command" value="LOAD"/>
                         <core:param name="studentId" value="${temp.id}"/>
                     </core:url>
+                    <core:url var="deleteLink" value="students">
+                        <core:param name="command" value="DELETE"/>
+                        <core:param name="studentId" value="${temp.id}"/>
+                    </core:url>
                     <tr>
                         <td>${temp.firstName}</td>
                         <td>${temp.lastName}</td>
                         <td>${temp.email}</td>
-                        <td><a href="${tempLink}"/>Update</td>
+                        <td>
+                            <a href="${tempLink}">Update</a> | <a href="${deleteLink}" onclick="if (!(confirm('Are you sure?'))) return;">Delete</a>
+                        </td>
                     </tr>
                 </core:forEach>
             </table>

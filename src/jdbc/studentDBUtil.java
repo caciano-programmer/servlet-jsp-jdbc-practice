@@ -121,4 +121,20 @@ public class studentDBUtil {
             statement.execute();
         } finally { close(connection, statement, null); }
     }
+
+    public void deleteStudent(String id) throws Exception {
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = dataSource.getConnection();
+            String sql = "delete from student where id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, Integer.parseInt(id));
+            statement.execute();
+        } finally {
+            close(connection, statement, null);
+        }
+    }
 }
